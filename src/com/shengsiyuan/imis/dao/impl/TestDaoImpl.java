@@ -25,7 +25,7 @@ public class TestDaoImpl extends AbstractBaseDao implements TestDao {
                 .append(" where id = ?");
         try {
             PreparedStatement ps = conn.prepareStatement(sql.toString());
-            ps.setLong(1, 1);
+            ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Test bean = new Test();

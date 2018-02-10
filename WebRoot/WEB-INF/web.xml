@@ -5,10 +5,46 @@
     <servlet-name>TestServlet</servlet-name>
     <servlet-class>com.shengsiyuan.imis.servlet.TestServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>NewsCatalogServlet</servlet-name>
+    <servlet-class>com.shengsiyuan.imis.servlet.newscatalog.ListNewsCatalog</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddNewsCatalog</servlet-name>
+    <servlet-class>com.shengsiyuan.imis.servlet.newscatalog.AddNewsCatalog</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdateNewsCatalog</servlet-name>
+    <servlet-class>com.shengsiyuan.imis.servlet.newscatalog.UpdateNewsCatalog</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdatePNewCatalog</servlet-name>
+    <servlet-class>com.shengsiyuan.imis.servlet.newscatalog.UpdatePNewCatalog</servlet-class>
+  </servlet>
+
+
+
+
 
   <servlet-mapping>
     <servlet-name>TestServlet</servlet-name>
     <url-pattern>/Test/TestServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NewsCatalogServlet</servlet-name>
+    <url-pattern>/NewsCatalog/ListNewsCatalog</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddNewsCatalog</servlet-name>
+    <url-pattern>/NewsCatalog/AddNewsCatalog</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateNewsCatalog</servlet-name>
+    <url-pattern>/NewsCatalog/UpdateNewsCatalog</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdatePNewCatalog</servlet-name>
+    <url-pattern>/NewsCatalog/UpdatePNewCatalog</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
