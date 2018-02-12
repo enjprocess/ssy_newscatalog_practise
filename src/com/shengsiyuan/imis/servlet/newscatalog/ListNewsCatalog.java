@@ -14,6 +14,7 @@ import com.shengsiyuan.imis.exception.ServiceException;
 import com.shengsiyuan.imis.model.NewsCatalog;
 import com.shengsiyuan.imis.service.NewsCatalogService;
 import com.shengsiyuan.imis.service.impl.NewsCatalogServiceImpl;
+import com.shengsiyuan.imis.util.Page;
 import com.shengsiyuan.imis.util.ParamUtils;
 
 public class ListNewsCatalog extends HttpServlet {
@@ -25,15 +26,22 @@ public class ListNewsCatalog extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         long parentId = ParamUtils.getParameter(request, "parentId", -1);
+        long start = ParamUtils.getParameter(request, "start", 0);
+        long range = ParamUtils.getParameter(request, "range", 10);
+        
         
         NewsCatalogService service = new NewsCatalogServiceImpl();
         try {
-            List<NewsCatalog> list = service.listNewsCatalogByParentId(parentId);
+            long total = service.getNewsCatalogCount(parentId);
+            List<NewsCatalog> list = service.listNewsCatalogByParentId(parentId, start, range);
             if (-1 != parentId) {
                 NewsCatalog bean = service.listNewsCatalogById(parentId);
                 long upperId = bean.getParentId();
                 request.setAttribute("upperId", String.valueOf(upperId));
             }
+            String pageLink = Page.pageLink(request, "", start, range, total);
+            System.out.println(pageLink);
+            request.setAttribute("pageLink", pageLink);
             request.setAttribute("list", list);
             request.setAttribute("parentId", String.valueOf(parentId));
             request.getRequestDispatcher("listNewsCatalog.jsp").forward(request, response);

@@ -37,6 +37,9 @@ String upperId = (String) request.getAttribute("upperId");
            <a href="ListNewsCatalog?parentId=<%= upperId%>"><img src="<%=request.getContextPath() %>/Images/btn_back.gif" border="0" /></a>
            <%} %>
         <td>
+        <td align="right">
+        <%= request.getAttribute("pageLink") %>
+        </td>
     </tr>
     
 </table>

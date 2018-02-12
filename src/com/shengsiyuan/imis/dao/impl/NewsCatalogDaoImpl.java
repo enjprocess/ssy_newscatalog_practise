@@ -22,14 +22,16 @@ public class NewsCatalogDaoImpl extends AbstractBaseDao implements NewsCatalogDa
     }
 
     @Override
-    public List<NewsCatalog> listNewsCatalogByParentId(long parentId)
+    public List<NewsCatalog> listNewsCatalogByParentId(long parentId, long start, long range)
             throws DaoException {
         StringBuffer sql = new StringBuffer();
         sql.append("select * from ").append(DaoConstants.NEWSCATALOG_TABLE_NAME)
-                .append(" where parentId = ?");
+                .append(" where parentId = ? order by id desc limit ?, ?");
         try {
             PreparedStatement ps = conn.prepareStatement(sql.toString());
             ps.setLong(1, parentId);
+            ps.setLong(2, start);
+            ps.setLong(3, range);
             ResultSet rs = ps.executeQuery();
             List<NewsCatalog> list = new ArrayList<NewsCatalog>();
             while (rs.next()) {
@@ -134,6 +136,54 @@ public class NewsCatalogDaoImpl extends AbstractBaseDao implements NewsCatalogDa
             e.printStackTrace();
             throw new DaoException(ErrorCode.SQL_ERROR);
         }
+    }
+
+    @Override
+    public List<NewsCatalog> listAllNewsCatalogByParentId(long parentId)
+            throws DaoException {
+        StringBuffer sql = new StringBuffer();
+        sql.append("select * from ").append(DaoConstants.NEWSCATALOG_TABLE_NAME)
+                .append(" where parentId = ? order by id desc");
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql.toString());
+            ps.setLong(1, parentId);
+            ResultSet rs = ps.executeQuery();
+            List<NewsCatalog> list = new ArrayList<NewsCatalog>();
+            while (rs.next()) {
+                NewsCatalog bean = new NewsCatalog();
+                long id = rs.getLong("id");
+                String name = rs.getString("name");
+                bean.setId(id);
+                bean.setName(name);
+                bean.setParentId(rs.getLong("parentId"));
+                list.add(bean);
+            }
+            return list;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException(ErrorCode.SQL_ERROR);
+        }
+    }
+
+    @Override
+    public long getNewsCatalogCount(long parentId) throws DaoException {
+        StringBuffer sql = new StringBuffer();
+        sql.append("select count(*) total from ").append(DaoConstants.NEWSCATALOG_TABLE_NAME)
+                .append(" where parentId = ?");
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql.toString());
+            ps.setLong(1, parentId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getLong("total");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException(ErrorCode.SQL_ERROR);
+        }
+        return 0;
     }
 
 }

@@ -8,7 +8,9 @@ import com.shengsiyuan.imis.model.NewsCatalog;
 
 public interface NewsCatalogService {
 
-    public List<NewsCatalog> listNewsCatalogByParentId(long parentId) throws ServiceException;
+    public List<NewsCatalog> listNewsCatalogByParentId(long parentId, long start, long range) throws ServiceException;
+    
+    public long getNewsCatalogCount(long parentId) throws ServiceException;
     
     public NewsCatalog listNewsCatalogById(long id) throws ServiceException;
     

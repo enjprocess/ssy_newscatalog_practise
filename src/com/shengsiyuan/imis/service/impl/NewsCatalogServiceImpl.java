@@ -16,12 +16,12 @@ public class NewsCatalogServiceImpl extends AbstractBaseService implements
         NewsCatalogService {
 
     @Override
-    public List<NewsCatalog> listNewsCatalogByParentId(long parentId)
+    public List<NewsCatalog> listNewsCatalogByParentId(long parentId, long start, long range)
             throws ServiceException {
         TransactionContext tc = transManager.beginTransaction();
         try {
             NewsCatalogDao dao = new NewsCatalogDaoImpl(tc.getConnection());
-            List<NewsCatalog> list = dao.listNewsCatalogByParentId(parentId);
+            List<NewsCatalog> list = dao.listNewsCatalogByParentId(parentId, start, range);
             tc.commitTransaction();
             return list;
         } catch(DaoException e) {
@@ -101,7 +101,7 @@ public class NewsCatalogServiceImpl extends AbstractBaseService implements
         try {
             NewsCatalogDao dao = new NewsCatalogDaoImpl(tc.getConnection());
             NewsCatalog bean = dao.listNewsCatalogById(parentId);
-            List<NewsCatalog> list = dao.listNewsCatalogByParentId(bean.getParentId());
+            List<NewsCatalog> list = dao.listAllNewsCatalogByParentId(bean.getParentId());
             tc.commitTransaction();
             return list;
         } catch(DaoException e) {
@@ -110,5 +110,21 @@ public class NewsCatalogServiceImpl extends AbstractBaseService implements
             throw new ServiceException(ErrorCode.LIST_NEWSCATALOG_ERROR, e);
         }
     }
+
+    @Override
+    public long getNewsCatalogCount(long parentId) throws ServiceException {
+        TransactionContext tc = transManager.beginTransaction();
+        try {
+            NewsCatalogDao dao = new NewsCatalogDaoImpl(tc.getConnection());
+            long total = dao.getNewsCatalogCount(parentId);
+            tc.commitTransaction();
+            return total;
+        } catch(DaoException e) {
+            e.printStackTrace();
+            tc.rollbackTransaction();
+            throw new ServiceException(ErrorCode.LIST_NEWSCATALOG_ERROR, e);
+        }
+    }
+
 
 }
