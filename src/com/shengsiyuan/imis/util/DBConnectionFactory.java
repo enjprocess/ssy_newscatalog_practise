@@ -44,6 +44,7 @@ public class DBConnectionFactory {
             db.setInitialSize(initialSize);
             db.setMaxActive(maxActive);
             dataSource = db;
+            System.out.println(dataSource);
         } catch (IOException e) {
             e.printStackTrace();
             throw new ConnectionException(MessageHelper.getExceptionInfo(ErrorCode.DB_CONNECTION_ERROR));

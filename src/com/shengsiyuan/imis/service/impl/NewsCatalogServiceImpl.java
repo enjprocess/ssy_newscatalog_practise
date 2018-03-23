@@ -1,16 +1,21 @@
 package com.shengsiyuan.imis.service.impl;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import com.shengsiyuan.imis.dao.NewsCatalogDao;
 import com.shengsiyuan.imis.dao.impl.NewsCatalogDaoImpl;
+import com.shengsiyuan.imis.exception.ConnectionException;
 import com.shengsiyuan.imis.exception.DaoException;
 import com.shengsiyuan.imis.exception.ErrorCode;
 import com.shengsiyuan.imis.exception.ServiceException;
 import com.shengsiyuan.imis.model.NewsCatalog;
 import com.shengsiyuan.imis.service.NewsCatalogService;
 import com.shengsiyuan.imis.util.AbstractBaseService;
+import com.shengsiyuan.imis.util.DBConnectionFactory;
 import com.shengsiyuan.imis.util.TransactionContext;
+import com.shengsiyuan.imis.util.TransactionManager;
 
 public class NewsCatalogServiceImpl extends AbstractBaseService implements
         NewsCatalogService {
@@ -22,11 +27,11 @@ public class NewsCatalogServiceImpl extends AbstractBaseService implements
         try {
             NewsCatalogDao dao = new NewsCatalogDaoImpl(tc.getConnection());
             List<NewsCatalog> list = dao.listNewsCatalogByParentId(parentId, start, range);
-            tc.commitTransaction();
+            transManager.commitTransaction(tc);
             return list;
         } catch(DaoException e) {
             e.printStackTrace();
-            tc.rollbackTransaction();
+            transManager.rollbackTransaction(tc);
             throw new ServiceException(ErrorCode.LIST_NEWSCATALOG_ERROR, e);
         }
     }
@@ -37,10 +42,10 @@ public class NewsCatalogServiceImpl extends AbstractBaseService implements
         try {
             NewsCatalogDao dao = new NewsCatalogDaoImpl(tc.getConnection());
             dao.addNewsCatalog(bean);
-            tc.commitTransaction();
+            transManager.commitTransaction(tc);
         } catch(DaoException e) {
             e.printStackTrace();
-            tc.rollbackTransaction();
+            transManager.rollbackTransaction(tc);
             throw new ServiceException(ErrorCode.ADD_NEWSCATALOG_ERROR, e);
         }
     }
@@ -51,11 +56,11 @@ public class NewsCatalogServiceImpl extends AbstractBaseService implements
         try {
             NewsCatalogDao dao = new NewsCatalogDaoImpl(tc.getConnection());
             NewsCatalog bean = dao.listNewsCatalogById(id);
-            tc.commitTransaction();
+            transManager.commitTransaction(tc);
             return bean;
         } catch(DaoException e) {
             e.printStackTrace();
-            tc.rollbackTransaction();
+            transManager.rollbackTransaction(tc);
             throw new ServiceException(ErrorCode.LIST_NEWSCATALOG_ERROR, e);
         }
     }
@@ -67,7 +72,7 @@ public class NewsCatalogServiceImpl extends AbstractBaseService implements
         try {
             NewsCatalogDao dao = new NewsCatalogDaoImpl(tc.getConnection());
             NewsCatalog bean = dao.listNewsCatalogByNameAndParentId(name, parentId);
-            tc.commitTransaction();
+            transManager.commitTransaction(tc);
             if (null != bean) {
                 return true;
             } else {
@@ -75,7 +80,7 @@ public class NewsCatalogServiceImpl extends AbstractBaseService implements
             }
         } catch(DaoException e) {
             e.printStackTrace();
-            tc.rollbackTransaction();
+            transManager.rollbackTransaction(tc);
             throw new ServiceException(ErrorCode.LIST_NEWSCATALOG_ERROR, e);
         }
     }
@@ -86,10 +91,10 @@ public class NewsCatalogServiceImpl extends AbstractBaseService implements
         try {
             NewsCatalogDao dao = new NewsCatalogDaoImpl(tc.getConnection());
             dao.updateNewsCatalog(bean);
-            tc.commitTransaction();
+            transManager.commitTransaction(tc);
         } catch(DaoException e) {
             e.printStackTrace();
-            tc.rollbackTransaction();
+            transManager.rollbackTransaction(tc);
             throw new ServiceException(ErrorCode.UPDATE_NEWSCATALOG_ERROR, e);
         }
     }
@@ -102,11 +107,11 @@ public class NewsCatalogServiceImpl extends AbstractBaseService implements
             NewsCatalogDao dao = new NewsCatalogDaoImpl(tc.getConnection());
             NewsCatalog bean = dao.listNewsCatalogById(parentId);
             List<NewsCatalog> list = dao.listAllNewsCatalogByParentId(bean.getParentId());
-            tc.commitTransaction();
+            transManager.commitTransaction(tc);
             return list;
         } catch(DaoException e) {
             e.printStackTrace();
-            tc.rollbackTransaction();
+            transManager.rollbackTransaction(tc);
             throw new ServiceException(ErrorCode.LIST_NEWSCATALOG_ERROR, e);
         }
     }
@@ -117,14 +122,27 @@ public class NewsCatalogServiceImpl extends AbstractBaseService implements
         try {
             NewsCatalogDao dao = new NewsCatalogDaoImpl(tc.getConnection());
             long total = dao.getNewsCatalogCount(parentId);
-            tc.commitTransaction();
+            transManager.commitTransaction(tc);
             return total;
         } catch(DaoException e) {
             e.printStackTrace();
-            tc.rollbackTransaction();
+            transManager.rollbackTransaction(tc);
             throw new ServiceException(ErrorCode.LIST_NEWSCATALOG_ERROR, e);
         }
     }
 
+    @Override
+    public void deleteNewsCatalogById(long id) throws ServiceException {
+        TransactionContext tc = transManager.beginTransaction();
+        try {
+            NewsCatalogDao dao = new NewsCatalogDaoImpl(tc.getConnection());
+            dao.deleteNewsCatalogById(id);
+            transManager.commitTransaction(tc);
+        } catch(DaoException e) {
+            e.printStackTrace();
+            transManager.rollbackTransaction(tc);
+            throw new ServiceException(ErrorCode.DELETE_NEWSCATALOG_ERROR, e);
+        }
+    }
 
 }

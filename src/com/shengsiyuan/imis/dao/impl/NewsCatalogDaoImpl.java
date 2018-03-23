@@ -186,4 +186,19 @@ public class NewsCatalogDaoImpl extends AbstractBaseDao implements NewsCatalogDa
         return 0;
     }
 
+    @Override
+    public void deleteNewsCatalogById(long id) throws DaoException {
+        StringBuffer sql = new StringBuffer();
+        sql.append("delete from ").append(DaoConstants.NEWSCATALOG_TABLE_NAME)
+                .append(" where id = ?");
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql.toString());
+            ps.setLong(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException(ErrorCode.SQL_ERROR);
+        }
+    }
+
 }

@@ -46,10 +46,6 @@ public class Page {
         return result;
     }
 
-    public static void main(String[] args) {
-//        String result = buildSingleHref("ListNewsCatalog", "name=zhangsan&age=11", 3, 5).toString();
-//        System.out.println(result);
-    }
     
     /**
      * 参数说明:
@@ -69,6 +65,10 @@ public class Page {
         
         long currentPage = start / range + 1;
         long totalPages = totalNums / range;
+        // 如果总共就一页则不显示分页信息
+        if (0 == totalPages) {
+            return "";
+        }
         if (totalNums % range != 0) {
             totalPages++;
         }

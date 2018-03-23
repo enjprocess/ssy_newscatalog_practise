@@ -24,6 +24,8 @@ public class ErrorCode {
     public final static int ADD_NEWSCATALOG_ERROR= 2001;
     //更新新闻类别错误
     public final static int UPDATE_NEWSCATALOG_ERROR= 2002;
+    //删除新闻列表错误
+    public final static int DELETE_NEWSCATALOG_ERROR = 2003;
     
     //其它异常
     /////////////////////////////////////////////////////////////////////////

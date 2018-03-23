@@ -7,6 +7,8 @@
 <%
 NewsCatalog bean =  (NewsCatalog) request.getAttribute("bean");
 List<NewsCatalog> list =  (List<NewsCatalog>) request.getAttribute("list");
+String start = (String) request.getAttribute("start");
+String range = (String) request.getAttribute("range");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <% String title = "新闻分类列表"; %>
@@ -38,6 +40,8 @@ List<NewsCatalog> list =  (List<NewsCatalog>) request.getAttribute("list");
 <form action="UpdateNewsCatalog" method="post" onsubmit="return validateForm();">
     <input type="hidden" name="oldParentId" value="<%= bean.getParentId() %>" />
     <input type="hidden" name="id" value="<%= bean.getId() %>" />
+    <input type="hidden" name="start" value="<%= start%>" />
+    <input type="hidden" name="range" value="<%= range%>" />
 	<table width="30%" align="center" class="table" >
 	    <tr class="tr">
 	        <td bgcolor="eoeoeo" nowrap="nowrap"><input style="width: 100%" value="<%= bean.getName() %>" type="text" id="name" name="name" /></td>

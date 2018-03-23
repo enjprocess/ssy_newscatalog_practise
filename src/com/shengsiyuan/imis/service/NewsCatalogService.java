@@ -21,4 +21,6 @@ public interface NewsCatalogService {
     public List<NewsCatalog> listParentSiblingsByParentId(long parentId) throws ServiceException;
     
     public void updateNewsCatalog(NewsCatalog bean) throws ServiceException;
+    
+    public void deleteNewsCatalogById(long id) throws ServiceException;
 }

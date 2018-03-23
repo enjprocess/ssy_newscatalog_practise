@@ -21,6 +21,11 @@
     <servlet-name>UpdatePNewCatalog</servlet-name>
     <servlet-class>com.shengsiyuan.imis.servlet.newscatalog.UpdatePNewCatalog</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DeleteNewsCatalog</servlet-name>
+    <servlet-class>com.shengsiyuan.imis.servlet.newscatalog.DeleteNewsCatalog</servlet-class>
+  </servlet>
+
 
 
 
@@ -45,6 +50,10 @@
   <servlet-mapping>
     <servlet-name>UpdatePNewCatalog</servlet-name>
     <url-pattern>/NewsCatalog/UpdatePNewCatalog</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteNewsCatalog</servlet-name>
+    <url-pattern>/NewsCatalog/DeleteNewsCatalog</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

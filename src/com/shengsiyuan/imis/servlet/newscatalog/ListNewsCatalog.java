@@ -39,11 +39,13 @@ public class ListNewsCatalog extends HttpServlet {
                 long upperId = bean.getParentId();
                 request.setAttribute("upperId", String.valueOf(upperId));
             }
-            String pageLink = Page.pageLink(request, "", start, range, total);
+            String pageLink = Page.pageLink(request, "parentId=" + parentId, start, range, total);
             System.out.println(pageLink);
             request.setAttribute("pageLink", pageLink);
             request.setAttribute("list", list);
             request.setAttribute("parentId", String.valueOf(parentId));
+            request.setAttribute("start", String.valueOf(start));
+            request.setAttribute("range", String.valueOf(range));
             request.getRequestDispatcher("listNewsCatalog.jsp").forward(request, response);
             return;
         } catch (ServiceException e) {

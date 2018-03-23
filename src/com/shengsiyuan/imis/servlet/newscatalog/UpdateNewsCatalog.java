@@ -30,6 +30,8 @@ public class UpdateNewsCatalog extends HttpServlet {
         long id = ParamUtils.getParameter(request, "id");
         long oldParentId = ParamUtils.getParameter(request, "oldParentId", -1);
         long newParentId = ParamUtils.getParameter(request, "newParentId", -1);
+        long start = ParamUtils.getParameter(request, "start", 0);
+        long range= ParamUtils.getParameter(request, "range", 10);
         bean.setId(id);
         bean.setName(name);
         bean.setParentId(newParentId);
@@ -45,7 +47,7 @@ public class UpdateNewsCatalog extends HttpServlet {
                 return;
             }
             service.updateNewsCatalog(bean);
-            response.sendRedirect("ListNewsCatalog?parentId=" + oldParentId);
+            response.sendRedirect("ListNewsCatalog?parentId=" + oldParentId + "&start=" + start + "&range=" + range);
         } catch (ServiceException e) {
             e.printStackTrace();
         }

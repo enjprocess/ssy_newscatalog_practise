@@ -8,6 +8,8 @@
 List<NewsCatalog> list = (List<NewsCatalog>) request.getAttribute("list");
 String parentId = (String) request.getAttribute("parentId");
 String upperId = (String) request.getAttribute("upperId");
+String start = (String) request.getAttribute("start");
+String range = (String) request.getAttribute("range");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <% String title = "新闻分类列表"; %>
@@ -60,8 +62,8 @@ String upperId = (String) request.getAttribute("upperId");
         <td><%= bean.getName()%></td>
         <td><a href="ListNewsCatalog?parentId=<%= bean.getId()%>">子分类</a></td>
         <td>新闻条目</td>
-        <td><a href="UpdatePNewCatalog?id=<%= bean.getId()%>">修改</a></td>
-        <td>删除</td>
+        <td><a href="UpdatePNewCatalog?id=<%= bean.getId()%>&parentId=<%= bean.getParentId()%>&start=<%= start%>&range=<%= range%>">修改</a></td>
+        <td><a href="DeleteNewsCatalog?id=<%= bean.getId()%>&parentId=<%= bean.getParentId()%>&start=<%= start%>&range=<%= range%>" onclick="return del();">删除</a></td>
     </tr>
     <%} %>
 </table>

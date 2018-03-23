@@ -22,4 +22,6 @@ public interface NewsCatalogDao {
     
     public void updateNewsCatalog(NewsCatalog bean) throws DaoException;
     
+    public void deleteNewsCatalogById(long id) throws DaoException;
+    
 }
