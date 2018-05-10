@@ -52,7 +52,7 @@
 				
 			<tr>
 				<td height="22" align="center">
-					<a href="<%= request.getContextPath() %>/NewsCatalog/ListNewsCatalog?parentId=-1&start=0&range=20">新闻管理</a>
+					<a href="<%= request.getContextPath() %>/NewsCatalog/ListNewsCatalog?parentId=-1&start=0&range=10">新闻管理</a>
 				</td>
 			</tr>
 

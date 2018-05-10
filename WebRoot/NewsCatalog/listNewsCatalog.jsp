@@ -61,7 +61,7 @@ String range = (String) request.getAttribute("range");
     <tr align="center" class="tr">
         <td><%= bean.getName()%></td>
         <td><a href="ListNewsCatalog?parentId=<%= bean.getId()%>">子分类</a></td>
-        <td>新闻条目</td>
+        <td><a href="../NewsItem/ListNewsItem?parentId=<%= bean.getId()%>">新闻条目</a></td>
         <td><a href="UpdatePNewCatalog?id=<%= bean.getId()%>&parentId=<%= bean.getParentId()%>&start=<%= start%>&range=<%= range%>">修改</a></td>
         <td><a href="DeleteNewsCatalog?id=<%= bean.getId()%>&parentId=<%= bean.getParentId()%>&start=<%= start%>&range=<%= range%>" onclick="return del();">删除</a></td>
     </tr>

@@ -1,6 +1,7 @@
 package com.shengsiyuan.imis.dao.impl;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,7 +12,6 @@ import com.shengsiyuan.imis.dao.NewsCatalogDao;
 import com.shengsiyuan.imis.exception.DaoException;
 import com.shengsiyuan.imis.exception.ErrorCode;
 import com.shengsiyuan.imis.model.NewsCatalog;
-import com.shengsiyuan.imis.model.Test;
 import com.shengsiyuan.imis.util.AbstractBaseDao;
 import com.shengsiyuan.imis.util.DaoConstants;
 
