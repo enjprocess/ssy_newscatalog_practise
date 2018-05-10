@@ -32,7 +32,7 @@ public class NewsItemServiceImpl extends AbstractBaseService implements
         } catch(DaoException e) {
             e.printStackTrace();
             transManager.rollbackTransaction(tc);
-            throw new ServiceException(ErrorCode.LIST_NEWSCATALOG_ERROR, e);
+            throw new ServiceException(ErrorCode.LIST_NEWSITEM_ERROR, e);
         }
     }
 
@@ -46,7 +46,7 @@ public class NewsItemServiceImpl extends AbstractBaseService implements
         } catch(DaoException e) {
             e.printStackTrace();
             transManager.rollbackTransaction(tc);
-            throw new ServiceException(ErrorCode.ADD_NEWSCATALOG_ERROR, e);
+            throw new ServiceException(ErrorCode.ADD_NEWSITEM_ERROR, e);
         }
     }
 
@@ -61,7 +61,7 @@ public class NewsItemServiceImpl extends AbstractBaseService implements
         } catch(DaoException e) {
             e.printStackTrace();
             transManager.rollbackTransaction(tc);
-            throw new ServiceException(ErrorCode.LIST_NEWSCATALOG_ERROR, e);
+            throw new ServiceException(ErrorCode.LIST_NEWSITEM_ERROR, e);
         }
     }
 
@@ -76,7 +76,7 @@ public class NewsItemServiceImpl extends AbstractBaseService implements
         } catch(DaoException e) {
             e.printStackTrace();
             transManager.rollbackTransaction(tc);
-            throw new ServiceException(ErrorCode.UPDATE_NEWSCATALOG_ERROR, e);
+            throw new ServiceException(ErrorCode.UPDATE_NEWSITEM_ERROR, e);
         }
     }
 
@@ -93,7 +93,7 @@ public class NewsItemServiceImpl extends AbstractBaseService implements
         } catch(DaoException e) {
             e.printStackTrace();
             transManager.rollbackTransaction(tc);
-            throw new ServiceException(ErrorCode.LIST_NEWSCATALOG_ERROR, e);
+            throw new ServiceException(ErrorCode.LIST_NEWSITEM_ERROR, e);
         }
     }
 
@@ -107,7 +107,7 @@ public class NewsItemServiceImpl extends AbstractBaseService implements
         } catch(DaoException e) {
             e.printStackTrace();
             transManager.rollbackTransaction(tc);
-            throw new ServiceException(ErrorCode.DELETE_NEWSCATALOG_ERROR, e);
+            throw new ServiceException(ErrorCode.DELETE_NEWSITEM_ERROR, e);
         }
     }
 

@@ -39,7 +39,7 @@ function showNewsItem(id) {
 				var str = "";
 				for (var i = 0; i < attList.length; i++) {
 					str += "<a href='../NewsAttachment/DownloadNewsAttachment?parentId=" + attList[i].parentId + "&name=" 
-							+ attList[i].name + "&randomName=" + attList[i].randomName + "'>" + attList[i].name + "</a><br/>"
+							+ attList[i].originName + "&randomName=" + attList[i].newName + "'>" + attList[i].originName + "</a><br/>"
 				}
 				$("#attachment").html(str);
 			})

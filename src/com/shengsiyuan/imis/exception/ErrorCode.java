@@ -26,6 +26,23 @@ public class ErrorCode {
     public final static int UPDATE_NEWSCATALOG_ERROR= 2002;
     //删除新闻列表错误
     public final static int DELETE_NEWSCATALOG_ERROR = 2003;
+
+    //显示新闻条目错误
+    public final static int LIST_NEWSITEM_ERROR= 3000;
+    //增加新闻条目错误
+    public final static int ADD_NEWSITEM_ERROR= 3001;
+    //更新新闻条目错误
+    public final static int UPDATE_NEWSITEM_ERROR= 3002;
+    //删除新闻条目错误
+    public final static int DELETE_NEWSITEM_ERROR = 3003;
+    
+    //显示控件错误
+    public final static int LIST_NEWSATTACHMENT_ERROR= 4000;
+    //增加控件错误
+    public final static int ADD_NEWSATTACHMENT_ERROR= 4001;
+    //删除控件错误
+    public final static int DELETE_NEWSATTACHMENT_ERROR = 4002;
+
     
     //其它异常
     /////////////////////////////////////////////////////////////////////////
