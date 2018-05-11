@@ -42,7 +42,14 @@ public class ErrorCode {
     public final static int ADD_NEWSATTACHMENT_ERROR= 4001;
     //删除控件错误
     public final static int DELETE_NEWSATTACHMENT_ERROR = 4002;
-
+    
+    //显示文档错误
+    public final static int LIST_DOCUMENTCATALOG_ERROR= 5000;
+    //增加文档节点错误
+    public final static int ADD_DOCUMENTCATALOG_ERROR= 5001;
+    //更新文档节点错误
+    public final static int UPDATE_DOCUMENTCATALOG_ERROR= 5002;
+    
     
     //其它异常
     /////////////////////////////////////////////////////////////////////////
